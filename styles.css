@@ -1,0 +1,63 @@
+:root{
+  --bg: #f4fbff;
+  --card: #ffffff;
+  --accent: #1976d2;
+  --muted: #6b6b6b;
+  --text: #063245;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;background:linear-gradient(90deg,#ffffff88,#f0f8ff);border-bottom:1px solid rgba(0,0,0,0.04)}
+.brand{font-weight:700;color:var(--accent);font-size:18px}
+.container{max-width:1100px;margin:18px auto;padding:14px}
+.header{display:flex;flex-direction:column;align-items:center;margin-bottom:12px}
+.header h1{margin:0;color:var(--accent);font-size:26px}
+.subtitle{margin:6px 0;color:var(--muted);font-size:13px}
+
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.nav button{padding:8px 12px;border-radius:8px;border:1px solid transparent;background:transparent;cursor:pointer}
+.nav button.active{background:var(--accent);color:white}
+
+.card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(11,111,191,0.08);margin-bottom:12px}
+.hidden{display:none}
+
+.stats{display:flex;gap:12px;flex-wrap:wrap}
+.stat{flex:1;min-width:160px;padding:12px;border-radius:8px;background:linear-gradient(180deg,white,#f7feff);text-align:center}
+.num{font-size:20px;font-weight:700;color:var(--accent)}
+.label{font-size:13px;color:var(--muted)}
+
+.row{display:flex;gap:12px;align-items:flex-start}
+.form-inline{display:flex;flex-direction:column;gap:8px;flex:1}
+.form-inline input, .form-inline select, .form-inline textarea{padding:10px;border-radius:8px;border:1px solid #e6f3ff;font-size:14px}
+.form-inline select[multiple]{height:120px}
+.form-inline button{padding:10px 14px;border-radius:8px;border:none;background:var(--accent);color:white;cursor:pointer}
+.primary{background:var(--accent);color:white;border:none;padding:10px 12px;border-radius:8px;cursor:pointer}
+.secondary{background:#eef6fb;color:var(--accent);border:1px solid #d7edff;padding:10px 12px;border-radius:8px;cursor:pointer}
+
+.searchArea{width:360px;max-width:36%;flex:0 0 360px;margin-top:6px}
+.searchArea input, .searchArea select{width:100%;padding:10px;border-radius:8px;border:1px solid #e6f3ef;margin-bottom:8px}
+.list{max-height:420px;overflow:auto;border-radius:8px;padding:6px;border:1px solid #eef6fb;background:#fff}
+
+.record{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;border:1px solid #f0f7fb;margin-bottom:8px}
+.record .meta{font-size:14px}
+.record .actions button{margin-left:6px;padding:6px 8px;border-radius:6px;border:none;cursor:pointer}
+.record .actions .edit{background:#0b9f8f;color:white}
+.record .actions .del{background:#ff6b6b;color:white}
+
+.footer{margin-top:12px;text-align:center;color:var(--muted);font-size:13px}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(3,19,32,0.4);display:flex;align-items:center;justify-content:center;padding:12px}
+.modal-content{background:white;padding:14px;border-radius:10px;max-width:720px;width:100%;box-shadow:0 10px 30px rgba(2,8,23,0.2)}
+.close{background:transparent;border:none;font-size:2rem;float:right;cursor:pointer}
+
+/* small screens */
+@media (max-width:900px){
+  .row{flex-direction:column}
+  .searchArea{width:100%;max-width:100%;flex:unset}
+  .list{max-height:260px}
+  .form-inline select[multiple]{height:100px}
+  .topbar{flex-direction:column;align-items:flex-start;gap:8px}
+  .nav{overflow:auto}
+}
