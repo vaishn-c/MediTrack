@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MediTrack — Final Pro Plus</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">MediTrack</div>
+    <div class="actions"></div>
+  </div>
+
+  <div class="container">
+    <header class="header">
+      <h1>MediTrack</h1>
+      <p class="subtitle">Offline hospital management — doctors, patients, appointments, export</p>
+    </header>
+
+    <nav class="nav">
+      <button id="btnDashboard" class="active">Dashboard</button>
+      <button id="btnDoctors">Doctors</button>
+      <button id="btnPatients">Patients</button>
+      <button id="btnAppointments">Appointments</button>
+      <button id="btnExport">Export</button>
+    </nav>
+
+    <main id="mainArea">
+      <section id="dashboard" class="card">
+        <h2>Dashboard</h2>
+        <div class="stats">
+          <div class="stat"><div class="num" id="totalPatients">0</div><div class="label">Total Patients</div></div>
+          <div class="stat"><div class="num" id="totalAppointments">0</div><div class="label">Total Appointments</div></div>
+          <div class="stat"><div class="num" id="todayAppointments">0</div><div class="label">Today's Appointments</div></div>
+          <div class="stat"><div class="num" id="totalRevenue">₹0</div><div class="label">Total Revenue</div></div>
+        </div>
+        <div id="revenueByDoctor" class="card" style="margin-top:12px"></div>
+      </section>
+
+      <section id="doctors" class="card hidden">
+        <h2>Doctors</h2>
+        <form id="doctorForm" class="form-inline">
+          <input id="doc_id" type="hidden" />
+          <input id="doc_name" placeholder="Doctor name" required />
+          <input id="doc_spec" placeholder="Specialization (optional)" />
+          <input id="doc_fee" type="number" placeholder="Default fees (₹, optional)" />
+          <button type="submit" class="primary">Save Doctor</button>
+          <button id="clearDoctor" type="button" class="secondary">Clear</button>
+        </form>
+        <div class="searchArea" style="margin-top:8px">
+          <input id="doctorSearch" placeholder="Search doctors by name or specialization" />
+          <div id="doctorsList" class="list"></div>
+        </div>
+      </section>
+
+      <section id="patients" class="card hidden">
+        <h2>Patients</h2>
+        <div class="row">
+          <form id="patientForm" class="form-inline">
+            <input id="p_id" type="hidden" />
+            <input id="p_name" placeholder="Full name" required />
+            <input id="p_age" type="number" placeholder="Age" required />
+            <input id="p_contact" placeholder="Contact number" required />
+            <button type="submit" class="primary">Save Patient</button>
+            <button id="clearPatient" type="button" class="secondary">Clear</button>
+          </form>
+
+          <div class="searchArea">
+            <input id="patientSearch" placeholder="Search patient by name or ID" />
+            <div id="patientsList" class="list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="appointments" class="card hidden">
+        <h2>Appointments</h2>
+        <div class="row">
+          <form id="apptForm" class="form-inline">
+            <input id="a_id" type="hidden" />
+            <select id="apptPatientSelect" required></select>
+            <select id="apptDoctorSelect" required></select>
+            <input id="apptDate" type="date" required />
+            <input id="apptTime" type="time" required />
+            <input id="apptTreatment" placeholder="Treatment given" />
+            <textarea id="apptPrescription" placeholder="Prescription (medicines, dosage, directions)"></textarea>
+            <input id="apptFees" type="number" placeholder="Fees charged (₹)" />
+            <input id="apptRemarks" placeholder="Remarks" />
+            <button type="submit" class="primary">Save Appointment</button>
+            <button id="clearAppt" type="button" class="secondary">Clear</button>
+          </form>
+
+          <div class="searchArea">
+            <input id="apptSearch" placeholder="Search appointments by patient name or ID" />
+            <select id="filterDoctor"><option value="">Filter by doctor</option></select>
+            <div id="appointmentsList" class="list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="export" class="card hidden">
+        <h2>Export Data</h2>
+        <p>Download a professional Excel file with Doctors, Patients and Appointments.</p>
+        <button id="downloadExcel" class="primary">Download MediTrack_Data</button>
+        <p class="muted">File contains three sheets: Doctors, Patients, Appointments. Filename includes today's date.</p>
+      </section>
+    </main>
+
+  
+    <footer class="footer">
+      <small> offline, localStorage-based. Doctors editable by user.</small>
+    </footer>
+  </div>
+
+  <!-- SheetJS -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
